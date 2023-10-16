@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>assignment 3</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  </head>
+  <body>
+      <p>
+      </p>
+      <div id="vis1"></div>
+      <div id="vis2"></div>
+
+      <script type="text/javascript">
+        // Visualization 1
+        var spec1 = {
+                        "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                        "data": {"url": "https://uiuc-ischool-dataviz.github.io/fall2023-acg-acu/data/building_inventory.csv"},
+                        "mark": "arc",
+                        "encoding": {
+                            "theta": {
+                            "field": "Usage Description",
+                            "type": "nominal",
+                            "aggregate": "count"
+                            },
+                            "color": {
+                            "field": "Usage Description",
+                            "type": "nominal",
+                            "legend": {"title": "Building Usage"}
+                            }
+                        },
+                        "view": {"stroke": null},
+                        "title": "Building Usage Distribution"
+                    };  
+        vegaEmbed('#vis1', spec1);
+
+        // Visualization 2
+        var spec2 = {
+                        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                        "description": "A bar chart showing the distribution of building usages.",
+                        "data": { "url": "https://uiuc-ischool-dataviz.github.io/fall2023-acg-acu/data/building_inventory.csv" },
+                        "mark": "bar",
+                        "encoding": {
+                            "x": {
+                            "field": "Usage Description",
+                            "type": "ordinal",
+                            "title": "Building Usage"
+                            },
+                            "y": {
+                            "aggregate": "count",
+                            "type": "quantitative",
+                            "title": "Number of Buildings"
+                            }
+                        }
+                    } 
+        vegaEmbed('#vis2', spec2);
+    </script>
+  </body>
+</html>
